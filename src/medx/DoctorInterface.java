@@ -23,18 +23,20 @@ package medx;
  * @author Anirudh Anand <anirudhanand722@gmail.com>
  * @license GPLv3.0+
  */
-public class MedxInterface extends javax.swing.JFrame {
-    String PatientName;
-    Integer PatientAge;
-    String PatientGender;
-    String PatientAddressLine1;
-    String PatientAddressLine2;
-    Integer PatientPhone;
+public class DoctorInterface extends javax.swing.JFrame {
+    String DoctorName;
+    Integer DoctorAge;
+    String DoctorGender;
+    String DoctorAddressLine1;
+    String DoctorAddressLine2;
+    Integer DoctorPhone;
+    Integer DoctorJoiningYear;
+    String DoctorDepartment;
     
     /**
      * Creates new form MedxInterface
      */
-    public MedxInterface() {
+    public DoctorInterface() {
         initComponents();
     }
 
@@ -47,42 +49,46 @@ public class MedxInterface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        patientName = new javax.swing.JTextField();
+        doctorName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        patientAge = new javax.swing.JTextField();
+        doctorAge = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        patientAddress1 = new javax.swing.JTextArea();
+        doctorAddress1 = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        patientAddress2 = new javax.swing.JTextArea();
+        doctorAddress2 = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
-        patientPhone = new javax.swing.JTextField();
+        doctorPhone = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         submit = new javax.swing.JButton();
         reset = new javax.swing.JButton();
-        patientGender = new javax.swing.JComboBox();
+        doctorGender = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
+        doctorDepartment = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        doctorJoiningYear = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        patientName.setToolTipText("Patient Name");
-        patientName.addActionListener(new java.awt.event.ActionListener() {
+        doctorName.setToolTipText("Doctor Name");
+        doctorName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientNameActionPerformed(evt);
+                doctorNameActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Patient Name");
+        jLabel1.setText("Doctor Name");
 
         jLabel3.setText("Age");
 
-        patientAge.setToolTipText("Patient Age");
-        patientAge.addActionListener(new java.awt.event.ActionListener() {
+        doctorAge.setToolTipText("Doctor Age");
+        doctorAge.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientAgeActionPerformed(evt);
+                doctorAgeActionPerformed(evt);
             }
         });
 
@@ -90,28 +96,28 @@ public class MedxInterface extends javax.swing.JFrame {
 
         jLabel5.setText("Address Line 1");
 
-        patientAddress1.setColumns(20);
-        patientAddress1.setRows(5);
-        jScrollPane1.setViewportView(patientAddress1);
+        doctorAddress1.setColumns(20);
+        doctorAddress1.setRows(5);
+        jScrollPane1.setViewportView(doctorAddress1);
 
         jLabel6.setText("Address Line 2");
 
-        patientAddress2.setColumns(20);
-        patientAddress2.setRows(5);
-        jScrollPane2.setViewportView(patientAddress2);
+        doctorAddress2.setColumns(20);
+        doctorAddress2.setRows(5);
+        jScrollPane2.setViewportView(doctorAddress2);
 
         jLabel7.setText("Phone");
 
-        patientPhone.setToolTipText("Patient Phone");
-        patientPhone.addActionListener(new java.awt.event.ActionListener() {
+        doctorPhone.setToolTipText("Patient Phone");
+        doctorPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientPhoneActionPerformed(evt);
+                doctorPhoneActionPerformed(evt);
             }
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon("/media/DATA/Softwares/medx/medx.jpg")); // NOI18N
 
-        jLabel8.setText("ADD NEW PATIENT RECORD");
+        jLabel8.setText("ADD NEW DOCTOR RECORD");
 
         submit.setText("Submit");
         submit.addActionListener(new java.awt.event.ActionListener() {
@@ -127,12 +133,22 @@ public class MedxInterface extends javax.swing.JFrame {
             }
         });
 
-        patientGender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Male", "Female" }));
-        patientGender.addActionListener(new java.awt.event.ActionListener() {
+        doctorGender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Male", "Female" }));
+        doctorGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientGenderActionPerformed(evt);
+                doctorGenderActionPerformed(evt);
             }
         });
+
+        jLabel9.setText("Department");
+
+        doctorDepartment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doctorDepartmentActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Joining Year");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,21 +165,25 @@ public class MedxInterface extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1)
-                        .addComponent(jScrollPane2)
-                        .addComponent(patientAge)
-                        .addComponent(patientName, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(patientPhone))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(submit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(reset))
-                    .addComponent(patientGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(doctorGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(doctorJoiningYear, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(doctorDepartment, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(doctorAge, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(doctorPhone, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(doctorName, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -174,16 +194,24 @@ public class MedxInterface extends javax.swing.JFrame {
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(patientName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(doctorName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(patientAge, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(doctorAge, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(patientGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(doctorGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(doctorDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(doctorJoiningYear, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
@@ -198,8 +226,8 @@ public class MedxInterface extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(patientPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(doctorPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(submit)
                             .addComponent(reset)))))
@@ -208,33 +236,40 @@ public class MedxInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void patientNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientNameActionPerformed
-        PatientName = patientName.getText();
-    }//GEN-LAST:event_patientNameActionPerformed
+    private void doctorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorNameActionPerformed
+        DoctorName = doctorName.getText();
+    }//GEN-LAST:event_doctorNameActionPerformed
 
-    private void patientAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientAgeActionPerformed
-       PatientAge = Integer.parseInt( patientAge.getText() );
-    }//GEN-LAST:event_patientAgeActionPerformed
+    private void doctorAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorAgeActionPerformed
+       DoctorAge = Integer.parseInt( doctorAge.getText() );
+    }//GEN-LAST:event_doctorAgeActionPerformed
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
        
     }//GEN-LAST:event_submitActionPerformed
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
-        patientName.setText( " " );
-        patientAge.setText( " " );
-        patientAddress1.setText( " " );
-        patientAddress2.setText( " " );
-        patientPhone.setText( " " );
+        doctorName.setText( " " );
+        doctorAge.setText( " " );
+        doctorAddress1.setText( " " );
+        doctorAddress2.setText( " " );
+        doctorPhone.setText( " " );
+        doctorJoiningYear.setText(  " " );
+        doctorDepartment.setText( " " );
     }//GEN-LAST:event_resetActionPerformed
 
-    private void patientPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientPhoneActionPerformed
-        PatientPhone = Integer.parseInt( patientPhone.getText() );
-    }//GEN-LAST:event_patientPhoneActionPerformed
+    private void doctorPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorPhoneActionPerformed
+        DoctorPhone = Integer.parseInt( doctorPhone.getText() );
+    }//GEN-LAST:event_doctorPhoneActionPerformed
 
-    private void patientGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientGenderActionPerformed
-        PatientGender = (String)patientGender.getSelectedItem();
-    }//GEN-LAST:event_patientGenderActionPerformed
+    private void doctorGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorGenderActionPerformed
+        DoctorGender = (String)doctorGender.getSelectedItem();
+    }//GEN-LAST:event_doctorGenderActionPerformed
+
+    private void doctorDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorDepartmentActionPerformed
+        // TODO add your handling code here:
+        DoctorDepartment = doctorDepartment.getText();
+    }//GEN-LAST:event_doctorDepartmentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,26 +288,38 @@ public class MedxInterface extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MedxInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MedxInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MedxInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MedxInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MedxInterface().setVisible(true);
+                new DoctorInterface().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea doctorAddress1;
+    private javax.swing.JTextArea doctorAddress2;
+    private javax.swing.JTextField doctorAge;
+    private javax.swing.JTextField doctorDepartment;
+    private javax.swing.JComboBox doctorGender;
+    private javax.swing.JTextField doctorJoiningYear;
+    private javax.swing.JTextField doctorName;
+    private javax.swing.JTextField doctorPhone;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -280,14 +327,9 @@ public class MedxInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea patientAddress1;
-    private javax.swing.JTextArea patientAddress2;
-    private javax.swing.JTextField patientAge;
-    private javax.swing.JComboBox patientGender;
-    private javax.swing.JTextField patientName;
-    private javax.swing.JTextField patientPhone;
     private javax.swing.JButton reset;
     private javax.swing.JButton submit;
     // End of variables declaration//GEN-END:variables
