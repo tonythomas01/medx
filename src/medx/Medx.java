@@ -27,6 +27,8 @@ public class Medx {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        MainFrame m1 = new MainFrame();
+        m1.setVisible(true);
     }
     
 }

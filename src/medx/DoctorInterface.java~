@@ -23,7 +23,7 @@ package medx;
  * @author Anirudh Anand <anirudhanand722@gmail.com>
  * @license GPLv3.0+
  */
-public class DoctorInterface extends javax.swing.JFrame {
+public class DoctorInterface extends javax.swing.JPanel {
     String DoctorName;
     Integer DoctorAge;
     String DoctorGender;
@@ -72,14 +72,7 @@ public class DoctorInterface extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         doctorJoiningYear = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        doctorName.setToolTipText("Doctor Name");
-        doctorName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                doctorNameActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Doctor Name");
 
@@ -245,7 +238,9 @@ public class DoctorInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_doctorAgeActionPerformed
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
-       
+
+        
+        
     }//GEN-LAST:event_submitActionPerformed
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
