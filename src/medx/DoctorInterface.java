@@ -108,7 +108,7 @@ public class DoctorInterface extends javax.swing.JFrame {
 
         jLabel7.setText("Phone");
 
-        doctorPhone.setToolTipText("Patient Phone");
+        doctorPhone.setToolTipText("Doctor Phone");
         doctorPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 doctorPhoneActionPerformed(evt);
