@@ -40,9 +40,9 @@ public class JDBCConnections {
             String sqlDoc = "CREATE TABLE IF NOT EXISTS DOCTOR( D_ID SERIAL, D_NAME VARCHAR(30),"
                     + " D_AGE INTEGER, D_GENDER VARCHAR(10), D_DEPARTMENT VARCHAR(30), D_JOININGYEAR INTEGER, D_ADDRESSLINE1 VARCHAR(60), "
                     + "D_ADDRESSLINE2 VARCHAR(60), D_PHONE INTEGER );";
-            String sqlPatient = "CREATE TABLE IF NOT EXISTS PATIENT( D_ID SERIAL, D_NAME VARCHAR(30),"
-                    + " D_AGE INTEGER, D_GENDER VARCHAR(10), D_ADDRESSLINE1 VARCHAR(60), "
-                    + "D_ADDRESSLINE2 VARCHAR(60), D_PHONE INTEGER );";
+            String sqlPatient = "CREATE TABLE IF NOT EXISTS PATIENT( P_ID SERIAL, P_NAME VARCHAR(30),"
+                    + "P_AGE INTEGER, P_GENDER VARCHAR(10), P_ADDRESSLINE1 VARCHAR(60), "
+                    + "P_ADDRESSLINE2 VARCHAR(60), P_PHONE INTEGER );";
             stmt.executeUpdate(sqlDoc);
             stmt.executeUpdate(sqlPatient);
         } catch ( Exception e ) {
@@ -90,7 +90,6 @@ public class JDBCConnections {
         
     }
     
-    
     public static  void createNewPatientRecord( String PatientName, Integer PatientAge, String PatientGender,
                 String PatientAddressLine1, String PatientAddressLine2, Integer PatientPhone ) {
         try { 
@@ -103,5 +102,29 @@ public class JDBCConnections {
             e.printStackTrace();
         }  
     }
+        
+    public static ResultSet selectParticularPatient( String PatientName ) {
+        try {
+           Statement stmt = conn.createStatement();
+           String sql = "SELECT * FROM PATIENT WHERE p_name='"+PatientName+"';";
+           ResultSet rs = stmt.executeQuery(sql);
+           while( rs.next() ) {
+               return rs;
+           }
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     
+    public static void DeletePatientRecord( Integer PatientId ) {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "DELETE FROM PATIENT WHERE p_id="+PatientId+";";
+            stmt.executeQuery(sql);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        
+    }
 }

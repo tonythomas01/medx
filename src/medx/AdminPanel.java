@@ -155,6 +155,10 @@ public class AdminPanel extends stdpanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        DeletePatientPanel d1 = new DeletePatientPanel(j1);
+        j1.removeAll();
+        j1.add(d1);
+        j1.revalidate();
     }//GEN-LAST:event_jButton5ActionPerformed
 
 
