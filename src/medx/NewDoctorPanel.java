@@ -209,6 +209,17 @@ public class NewDoctorPanel extends stdpanel {
 
     private void docSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_docSubmitActionPerformed
         // TODO add your handling code here:
+        DoctorName = docName.getText();
+        DoctorAge =  Integer.parseInt( docAge.getText() );
+        DoctorGender = (String)docGender.getSelectedItem();
+        DoctorDepartment = docDepartment.getText();
+        DoctorAddressLine1 = docAddress1.getText();
+        DoctorAddressLine2 = docAddress2.getText();
+        DoctorJoiningYear = Integer.parseInt( docJoiningYear.getText() );
+        DoctorPhone = Integer.parseInt( docPhone.getText() );
+        JDBCConnections j1 = new JDBCConnections();
+        j1.createNewDoctorRecord( DoctorName,DoctorAge,DoctorGender, DoctorDepartment, 
+                DoctorJoiningYear, DoctorAddressLine1, DoctorAddressLine2, DoctorPhone );
     }//GEN-LAST:event_docSubmitActionPerformed
 
     private void docResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_docResetActionPerformed

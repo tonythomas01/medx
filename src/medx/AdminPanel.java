@@ -85,6 +85,7 @@ public class AdminPanel extends stdpanel {
         j1.removeAll();
         j1.add(d1);
         j1.revalidate();
+        JDBCConnections j1;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
