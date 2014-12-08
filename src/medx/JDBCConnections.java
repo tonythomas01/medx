@@ -37,10 +37,14 @@ public class JDBCConnections {
             Class.forName( "org.postgresql.Driver");
             conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/medx", DatabaseUserName, DatabasePassword );
             Statement stmt = conn.createStatement();
-            String sql = "CREATE TABLE IF NOT EXISTS DOCTOR( D_ID SERIAL, D_NAME VARCHAR(30),"
+            String sqlDoc = "CREATE TABLE IF NOT EXISTS DOCTOR( D_ID SERIAL, D_NAME VARCHAR(30),"
                     + " D_AGE INTEGER, D_GENDER VARCHAR(10), D_DEPARTMENT VARCHAR(30), D_JOININGYEAR INTEGER, D_ADDRESSLINE1 VARCHAR(60), "
                     + "D_ADDRESSLINE2 VARCHAR(60), D_PHONE INTEGER );";
-            stmt.executeUpdate(sql);
+            String sqlPatient = "CREATE TABLE IF NOT EXISTS PATIENT( D_ID SERIAL, D_NAME VARCHAR(30),"
+                    + " D_AGE INTEGER, D_GENDER VARCHAR(10), D_ADDRESSLINE1 VARCHAR(60), "
+                    + "D_ADDRESSLINE2 VARCHAR(60), D_PHONE INTEGER );";
+            stmt.executeUpdate(sqlDoc);
+            stmt.executeUpdate(sqlPatient);
         } catch ( Exception e ) {
             e.printStackTrace();
         }
@@ -54,7 +58,6 @@ public class JDBCConnections {
             String sql = "INSERT INTO DOCTOR VALUES( DEFAULT,'"+DoctorName+"',"+DoctorAge+",'"+DoctorGender+"',"
                     + "'"+DoctorDepartment+"',"+DoctorJoiningYear+",'"+DoctorAddressLine1+"',"
                     + "'"+DoctorAddressLine2+"',"+DoctorPhone+");";
-            System.out.println( sql );
             stmt.executeUpdate( sql );
             
         } catch( Exception e ) {
@@ -87,5 +90,18 @@ public class JDBCConnections {
         
     }
     
+    
+    public static  void createNewPatientRecord( String PatientName, Integer PatientAge, String PatientGender,
+                String PatientAddressLine1, String PatientAddressLine2, Integer PatientPhone ) {
+        try { 
+            String sql = "INSERT INTO PATIENT VALUES( DEFAULT,'"+PatientName+"',"+PatientAge+","
+                     + "'"+PatientGender+"','"+PatientAddressLine1+"','"+PatientAddressLine2+"',"
+                     + ""+PatientPhone+");";
+            Statement stmt = conn.createStatement();
+            stmt.executeQuery( sql );
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }  
+    }
     
 }

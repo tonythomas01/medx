@@ -43,7 +43,7 @@ public class AdminPanel extends stdpanel {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        AddPatientbutton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         delDocButton = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -55,10 +55,10 @@ public class AdminPanel extends stdpanel {
             }
         });
 
-        jButton3.setText("Add  New Patient");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        AddPatientbutton.setText("Add  New Patient");
+        AddPatientbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                AddPatientbuttonActionPerformed(evt);
             }
         });
 
@@ -98,7 +98,7 @@ public class AdminPanel extends stdpanel {
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(83, 83, 83)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddPatientbutton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(97, 97, 97))
         );
@@ -107,7 +107,7 @@ public class AdminPanel extends stdpanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddPatientbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -144,9 +144,14 @@ public class AdminPanel extends stdpanel {
         j1.revalidate();
     }//GEN-LAST:event_delDocButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void AddPatientbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPatientbuttonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        NewPatientPanel d1 = new NewPatientPanel(j1);
+        j1.removeAll();
+        j1.add(d1);
+        j1.revalidate();
+        JDBCConnections j1;
+    }//GEN-LAST:event_AddPatientbuttonActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
@@ -154,10 +159,10 @@ public class AdminPanel extends stdpanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddPatientbutton;
     private javax.swing.JButton delDocButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     // End of variables declaration//GEN-END:variables
 }
