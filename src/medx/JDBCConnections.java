@@ -18,6 +18,7 @@ package medx;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
@@ -59,6 +60,31 @@ public class JDBCConnections {
         } catch( Exception e ) {
             e.printStackTrace();
         }
+    }
+    
+    public static ResultSet selectParticularDoctor( String DoctorName ) {
+        try {
+           Statement stmt = conn.createStatement();
+           String sql = "SELECT * FROM DOCTOR WHERE d_name='"+DoctorName+"';";
+           ResultSet rs = stmt.executeQuery(sql);
+           while( rs.next() ) {
+               return rs;
+           }
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public static void DeleteDoctorRecord( Integer DocId ) {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "DELETE FROM DOCTOR WHERE d_id="+DocId+";";
+            stmt.executeQuery(sql);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        
     }
     
     
