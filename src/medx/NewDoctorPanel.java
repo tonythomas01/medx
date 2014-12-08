@@ -16,6 +16,7 @@
  */
 package medx;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -69,6 +70,7 @@ public class NewDoctorPanel extends stdpanel {
         docPhone = new javax.swing.JTextField();
         docSubmit = new javax.swing.JButton();
         docReset = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setText("Doctor Name ");
 
@@ -128,6 +130,13 @@ public class NewDoctorPanel extends stdpanel {
             }
         });
 
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,8 +156,10 @@ public class NewDoctorPanel extends stdpanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(docSubmit)
-                        .addGap(26, 26, 26)
-                        .addComponent(docReset))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(docReset)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1))
                     .addComponent(docGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,7 +169,7 @@ public class NewDoctorPanel extends stdpanel {
                         .addComponent(docDepartment, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(docAge, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(docName, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,7 +209,8 @@ public class NewDoctorPanel extends stdpanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(docSubmit)
-                    .addComponent(docReset))
+                    .addComponent(docReset)
+                    .addComponent(jButton1))
                 .addGap(28, 28, 28))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -220,10 +232,17 @@ public class NewDoctorPanel extends stdpanel {
         JDBCConnections j1 = new JDBCConnections();
         j1.createNewDoctorRecord( DoctorName,DoctorAge,DoctorGender, DoctorDepartment, 
                 DoctorJoiningYear, DoctorAddressLine1, DoctorAddressLine2, DoctorPhone );
+        JOptionPane.showMessageDialog(null,"Successfully Added","Add New Doctor",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_docSubmitActionPerformed
 
     private void docResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_docResetActionPerformed
-        // TODO add your handling code here:
+        docName.setText("");
+        docAddress1.setText("");
+        docAddress2.setText("");
+        docAge.setText("");
+        docJoiningYear.setText("");
+        docPhone.setText("");
+        docDepartment.setText("");
     }//GEN-LAST:event_docResetActionPerformed
 
     private void docDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_docDepartmentActionPerformed
@@ -233,6 +252,15 @@ public class NewDoctorPanel extends stdpanel {
     private void docJoiningYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_docJoiningYearActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_docJoiningYearActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+            AdminPanel a1 = new AdminPanel(j1);
+            j1.removeAll();
+            j1.add(a1);
+            j1.repaint();
+            j1.revalidate();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -246,6 +274,7 @@ public class NewDoctorPanel extends stdpanel {
     private javax.swing.JTextField docPhone;
     private javax.swing.JButton docReset;
     private javax.swing.JButton docSubmit;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -19,6 +19,7 @@ package medx;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -54,6 +55,7 @@ public class JDBCConnections {
                     + "'"+DoctorAddressLine2+"',"+DoctorPhone+");";
             System.out.println( sql );
             stmt.executeUpdate( sql );
+            
         } catch( Exception e ) {
             e.printStackTrace();
         }
