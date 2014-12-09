@@ -42,7 +42,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/media/DATA/Softwares/medx/medx.jpg"/>
+          <Image iconType="2" name="/home/router/NetBeansProjects/Medx/medx.jpg"/>
         </Property>
       </Properties>
     </Component>

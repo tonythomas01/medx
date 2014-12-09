@@ -58,7 +58,7 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("/media/DATA/Softwares/medx/medx.jpg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("/home/router/NetBeansProjects/Medx/medx.jpg")); // NOI18N
 
         jPanel2.setRequestFocusEnabled(false);
         jPanel2.setVerifyInputWhenFocusTarget(false);
