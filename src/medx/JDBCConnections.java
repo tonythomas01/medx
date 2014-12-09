@@ -19,6 +19,7 @@ package medx;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
@@ -124,7 +125,26 @@ public class JDBCConnections {
             stmt.executeQuery(sql);
         } catch ( Exception e ) {
             e.printStackTrace();
-        }
-        
+        }   
     }
+    
+    public static String[] getDoctorNames() {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT d_name from DOCTOR";
+            ResultSet rs;
+            rs = stmt.executeQuery(sql);
+            String[] allDoctors = new String[15];
+            int i = 0;
+            while ( rs.next() ) {
+                allDoctors[i] = rs.getString("d_name");
+                i++;
+            }
+            return allDoctors;      
+        }catch ( Exception e ) {
+            e.printStackTrace();
+        }
+      return null;
+    }
+
 }
