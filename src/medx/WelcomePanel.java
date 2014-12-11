@@ -56,6 +56,11 @@ public class WelcomePanel extends stdpanel {
         jLabel1.setText("Login As");
 
         loginas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Admin", "Doctor", "Receptionist", "Pharmacist" }));
+        loginas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -91,7 +96,18 @@ public class WelcomePanel extends stdpanel {
             j1.repaint();
             j1.revalidate();
         }
+        if( loginas.getSelectedItem() == "Receptionist" ) {
+            ReceptionPanel a1 = new ReceptionPanel(j1);
+            j1.removeAll();
+            j1.add(a1);
+            j1.repaint();
+            j1.revalidate();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void loginasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loginasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
