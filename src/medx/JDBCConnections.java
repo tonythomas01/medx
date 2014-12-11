@@ -38,14 +38,18 @@ public class JDBCConnections {
             Class.forName( "org.postgresql.Driver");
             conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/medx", DatabaseUserName, DatabasePassword );
             Statement stmt = conn.createStatement();
-            String sqlDoc = "CREATE TABLE IF NOT EXISTS DOCTOR( D_ID SERIAL, D_NAME VARCHAR(30),"
+            String sqlDoc = "CREATE TABLE IF NOT EXISTS DOCTOR( D_ID SERIAL PRIMARY KEY, D_NAME VARCHAR(30),"
                     + " D_AGE INTEGER, D_GENDER VARCHAR(10), D_DEPARTMENT VARCHAR(30), D_JOININGYEAR INTEGER, D_ADDRESSLINE1 VARCHAR(60), "
                     + "D_ADDRESSLINE2 VARCHAR(60), D_PHONE INTEGER );";
-            String sqlPatient = "CREATE TABLE IF NOT EXISTS PATIENT( P_ID SERIAL, P_NAME VARCHAR(30),"
+            String sqlPatient = "CREATE TABLE IF NOT EXISTS PATIENT( P_ID SERIAL PRIMARY KEY, P_NAME VARCHAR(30),"
                     + "P_AGE INTEGER, P_GENDER VARCHAR(10), P_ADDRESSLINE1 VARCHAR(60), "
                     + "P_ADDRESSLINE2 VARCHAR(60), P_PHONE INTEGER );";
+            String sqlAppoinment = "CREATE TABLE IF NOT EXISTS APPOINMENT( APP_ID SERIAL PRIMARY KEY, "
+                    + "D_ID INTEGER  REFERENCES DOCTOR( D_ID ), "
+                    + "P_ID INTEGER REFERENCES PATIENT( P_ID ));";
             stmt.executeUpdate(sqlDoc);
             stmt.executeUpdate(sqlPatient);
+            stmt.executeUpdate(sqlAppoinment);
         } catch ( Exception e ) {
             e.printStackTrace();
         }
@@ -103,7 +107,19 @@ public class JDBCConnections {
             e.printStackTrace();
         }  
     }
+    
+    public static void createNewAppoinment( String PatientName, Integer DocId ) {
+        try {
+            Statement stmt = conn.createStatement();
+            Integer patientId = getPatientId( PatientName );
+            String sql = "INSERT INTO APPOINMENT VALUES( DEFAULT,"+DocId+","+patientId+");";
+            stmt.executeUpdate( sql );
+        }catch ( Exception e ) {
+            e.printStackTrace();
+        }
         
+    }
+         
     public static ResultSet selectParticularPatient( String PatientName ) {
         try {
            Statement stmt = conn.createStatement();
@@ -132,9 +148,10 @@ public class JDBCConnections {
         try {
             Statement stmt = conn.createStatement();
             String sql = "SELECT d_name from DOCTOR";
+            int TotalSize = getNextDotorId()-1; // This would be the total number of Doctors
             ResultSet rs;
             rs = stmt.executeQuery(sql);
-            String[] allDoctors = new String[15];
+            String[] allDoctors = new String[TotalSize];
             int i = 0;
             while ( rs.next() ) {
                 allDoctors[i] = rs.getString("d_name");
@@ -146,5 +163,83 @@ public class JDBCConnections {
         }
       return null;
     }
+    
+    public static Integer getNextPatientId() {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT count(*) AS numberOfPatients from PATIENT";
+            ResultSet rs;
+            rs = stmt.executeQuery(sql);
+            while( rs.next() ) {
+                return rs.getInt( "numberOfPatients" )+1;
+             }
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return -1;       
+    }
+    
+    public static Integer getNextDotorId() {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT count(*) AS numberOfDoctor from DOCTOR";
+            ResultSet rs;
+            rs = stmt.executeQuery(sql);
+            while( rs.next() ) {
+                return rs.getInt( "numberOfDoctor" )+1;
+             }
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return -1;       
+    }
+    
+    public Integer getDoctorId( String dname ) {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT D_ID from DOCTOR where D_NAME='"+ dname+"'";
+            ResultSet rs;
+            rs = stmt.executeQuery(sql);
+            while( rs.next() ) {
+                return rs.getInt("D_ID");
+             }
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return -1; 
+    }
+    
+    public static Integer getPatientId( String pname ) {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT P_ID from PATIENT where P_NAME='"+ pname+"'";
+            ResultSet rs;
+            rs = stmt.executeQuery(sql);
+            while( rs.next() ) {
+                return rs.getInt("P_ID");
+             }
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return -1; 
+    }
+    
+    public Integer getDoctorTotalAppoinments( Integer docId ) {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT count(*) as NUMBEROFAPPOINMENTS from APPOINMENT  where D_ID="+docId+";";
+            ResultSet rs;
+            rs = stmt.executeQuery(sql);
+            while( rs.next() ) {
+                return rs.getInt("NUMBEROFAPPOINMENTS");
+             }
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+//    public static void addNewAppoinment( String PatientName, Integer patientId ) {
+//        
+//    }
 
 }
