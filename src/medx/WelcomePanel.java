@@ -110,6 +110,14 @@ public class WelcomePanel extends stdpanel {
             j1.repaint();
             j1.revalidate();
         }
+        if( loginas.getSelectedItem() == "Pharmacist" ) {
+            PharmacistPanel p1 = new PharmacistPanel(j1);
+            j1.removeAll();
+            j1.add(p1);
+            j1.repaint();
+            j1.revalidate();
+        }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void loginasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginasActionPerformed

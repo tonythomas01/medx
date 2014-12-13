@@ -93,9 +93,11 @@ public class DoctorPanel extends stdpanel {
         jTextField6 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        treatmentRemarks = new javax.swing.JTextArea();
         jLabel14 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        appoinmentId = new javax.swing.JTextField();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -189,10 +191,10 @@ public class DoctorPanel extends stdpanel {
 
         jLabel13.setText("Remarks");
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        treatmentRemarks.setEditable(false);
+        treatmentRemarks.setColumns(20);
+        treatmentRemarks.setRows(5);
+        jScrollPane1.setViewportView(treatmentRemarks);
 
         jButton3.setText("Treatment Done");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -200,6 +202,10 @@ public class DoctorPanel extends stdpanel {
                 jButton3ActionPerformed(evt);
             }
         });
+
+        jLabel15.setText("Appoinment Id");
+
+        appoinmentId.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -227,11 +233,14 @@ public class DoctorPanel extends stdpanel {
                                             .addComponent(jLabel2)
                                             .addGap(37, 37, 37))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel3)
+                                                .addComponent(jLabel15))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                                        .addComponent(jTextField2))
+                                        .addComponent(jTextField2)
+                                        .addComponent(appoinmentId))
                                     .addGap(89, 89, 89)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel4)
@@ -250,7 +259,7 @@ public class DoctorPanel extends stdpanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                                 .addComponent(docId, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(22, 22, 22))))
                     .addGroup(layout.createSequentialGroup()
@@ -324,6 +333,10 @@ public class DoctorPanel extends stdpanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(appoinmentId, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15))
                         .addGap(99, 99, 99)
                         .addComponent(jLabel13))
                     .addGroup(layout.createSequentialGroup()
@@ -347,7 +360,7 @@ public class DoctorPanel extends stdpanel {
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14)
                     .addComponent(jButton3))
@@ -368,6 +381,8 @@ public class DoctorPanel extends stdpanel {
             ResultSet rs = j1.selectParticularPatient( patientComboBox.getSelectedItem().toString() );
             jTextField1.setText( rs.getString( "p_id" ) );
             jTextField2.setText( rs.getString( "p_gender" ) );
+            Integer CurrentAppoinmentId = j1.getAppoinmentId( DoctorId, rs.getInt( "p_id" )  );        
+            appoinmentId.setText( CurrentAppoinmentId.toString() );
         }catch ( Exception e ) {
             e.printStackTrace();
         }
@@ -399,8 +414,10 @@ public class DoctorPanel extends stdpanel {
         try {
             JDBCConnections jdbcConn = new JDBCConnections();
             ResultSet rs = jdbcConn.selectParticularPatient( patientComboBox.getSelectedItem().toString() );
-            jTextField1.setText( rs.getString( "p_id" ) );
+            jTextField1.setText( rs.getString( "p_age" ) );
             jTextField2.setText( rs.getString( "p_gender" ) );
+            Integer CurrentAppoinmentId = jdbcConn.getAppoinmentId( DoctorId, rs.getInt( "p_id" )  );        
+            appoinmentId.setText( CurrentAppoinmentId.toString() );
 
         } catch ( Exception e ) {
             e.printStackTrace();
@@ -418,6 +435,26 @@ public class DoctorPanel extends stdpanel {
         this.jTextField4.setEditable(true);
         this.jTextField5.setEditable(true);
         this.jTextField6.setEditable(true);
+        this.treatmentRemarks.setEditable(true);
+        try {
+            JDBCConnections j1 = new JDBCConnections();
+            String[] DrugNames = j1.getDrugNames();
+            jComboBox1.removeAllItems();
+            jComboBox2.removeAllItems();
+            jComboBox3.removeAllItems();
+            jComboBox4.removeAllItems();
+            
+            DefaultComboBoxModel DrugListModel1 = new DefaultComboBoxModel(DrugNames);
+            DefaultComboBoxModel DrugListModel2 = new DefaultComboBoxModel(DrugNames);
+            DefaultComboBoxModel DrugListModel3 = new DefaultComboBoxModel(DrugNames);
+            DefaultComboBoxModel DrugListModel4 = new DefaultComboBoxModel(DrugNames);
+            jComboBox1.setModel( DrugListModel1 );
+            jComboBox2.setModel( DrugListModel2 );
+            jComboBox3.setModel( DrugListModel3 );
+            jComboBox4.setModel( DrugListModel4 );
+        }catch ( Exception e ) {
+            e.printStackTrace();
+        }
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -427,6 +464,7 @@ public class DoctorPanel extends stdpanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField appoinmentId;
     public javax.swing.JTextField docId;
     private javax.swing.JTextField docName;
     private javax.swing.JButton jButton1;
@@ -442,6 +480,7 @@ public class DoctorPanel extends stdpanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -451,7 +490,6 @@ public class DoctorPanel extends stdpanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -460,6 +498,7 @@ public class DoctorPanel extends stdpanel {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JComboBox patientComboBox;
+    private javax.swing.JTextArea treatmentRemarks;
     private javax.swing.JButton viewQueueButton;
     // End of variables declaration//GEN-END:variables
 }

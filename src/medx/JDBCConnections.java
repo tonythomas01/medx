@@ -50,11 +50,16 @@ public class JDBCConnections {
             String sqlAppoinmentDetails = "CREATE TABLE IF NOT EXISTS APPOINMENT_DETAILS( APP_ID INTEGER REFERENCES APPOINMENT(APP_ID), "
                     + "APP_DATE DATE, APP_TIME TIME, APP_BOOKINGTIMESTAMP TIMESTAMP DEFAULT CURRENT_TIMESTAMP , "
                     + "APP_DONE BOOLEAN DEFAULT FALSE )";
+            String sqlDrugTable = "CREATE TABLE IF NOT EXISTS DRUG( DG_ID SERIAL PRIMARY KEY, "
+                    + "DG_NAME VARCHAR(30), DG_MANUFACTURER VARCHAR(30), DG_RATE INTEGER, DG_MANUFACTURE_DATE DATE,"
+                    + " DG_EXPIRY DATE, DG_INITAL_AVAIL INTEGER, DG_VENDRO VARCHAR(30) );";
+            
             String sqlDateFormat = "SET datestyle = \"ISO, DMY\";";
             stmt.executeUpdate(sqlDoc);
             stmt.executeUpdate(sqlPatient);
             stmt.executeUpdate(sqlAppoinment);
             stmt.executeUpdate(sqlAppoinmentDetails);
+            stmt.executeUpdate(sqlDrugTable);
             stmt.executeUpdate( sqlDateFormat );
         } catch ( Exception e ) {
             e.printStackTrace();
@@ -124,6 +129,19 @@ public class JDBCConnections {
         }
         
     }
+    
+    public static void createNewDrugRecord( String DGName, String Manufacturer, 
+            Integer Rate, String ManufactureDate, String ExpiryDate, Integer IntialAvailability, String Vendor  ) {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "INSERT INTO DRUG VALUES( DEFAULT,'"+DGName+"','"+Manufacturer+"',"
+                    + ""+Rate+",'"+ManufactureDate+"','"+ExpiryDate+"',"+IntialAvailability+","
+                    + "'"+Vendor+"');";
+            stmt.executeUpdate( sql );
+        }catch ( Exception e ) {
+            e.printStackTrace();
+        }
+    }
          
     public static ResultSet selectParticularPatient( String PatientName ) {
         try {
@@ -190,6 +208,26 @@ public class JDBCConnections {
       return null;
     }
     
+    public static String[] getDrugNames( ) {
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs;
+            Integer totalSize = getTotalNumberOfDrugs();
+            String sql = "SELECT DG_NAME FROM DRUG";
+            rs = stmt.executeQuery( sql );
+            String[] allDrugs = new String[ totalSize + 1];
+            int i = 0;
+            while ( rs.next() ) {
+                allDrugs[i] = rs.getString( "dg_name" );
+                i++;
+            }
+            return allDrugs;     
+        }catch ( Exception e ) {
+            e.printStackTrace();
+        }
+      return null;
+    }
+    
     public static Integer getTotalNumberOfPatientsForADoctor( Integer doctorId ) {
          try {
             Statement stmt = conn.createStatement();
@@ -199,6 +237,21 @@ public class JDBCConnections {
             rs = stmt.executeQuery(sql);
             while( rs.next() ) {
                 return rs.getInt( "numberofPatients" );
+            }
+        }catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
+    public static Integer getTotalNumberOfDrugs(  ) {
+         try {
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT COUNT(*) AS numberofDrugs FROM DRUG;"; 
+            ResultSet rs;
+            rs = stmt.executeQuery(sql);
+            while( rs.next() ) {
+                return rs.getInt( "numberofDrugs" );
             }
         }catch ( Exception e ) {
             e.printStackTrace();
@@ -218,7 +271,22 @@ public class JDBCConnections {
         } catch ( Exception e ) {
             e.printStackTrace();
         }
-        return -1;       
+        return 0;       
+    }
+    
+    public static Integer getNextDrugId() {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT count(*) AS numberOfDrugs from DRUG";
+            ResultSet rs;
+            rs = stmt.executeQuery(sql);
+            while( rs.next() ) {
+                return rs.getInt( "numberOfDrugs" )+1;
+             }
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return 0;       
     }
     
     public static Integer getNextDotorId() {
@@ -304,6 +372,20 @@ public class JDBCConnections {
         } catch ( Exception e ) {
             e.printStackTrace();
         }
+    }
+    
+    public Integer getAppoinmentId( Integer doctorId, Integer patientId ) {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT APP_ID FROM APPOINMENT WHERE D_ID = "+doctorId+" AND P_ID= "+patientId+";";
+            ResultSet rs = stmt.executeQuery(sql);
+            while( rs.next() ) {
+                return rs.getInt( "APP_ID" );
+            }
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 
 }
