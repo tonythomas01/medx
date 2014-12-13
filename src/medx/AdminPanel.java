@@ -139,7 +139,7 @@ public class AdminPanel extends stdpanel {
 
     private void delDocButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delDocButtonActionPerformed
         // TODO add your handling code here:
-        DeleteDoctorPanel d1 = new DeleteDoctorPanel(j1);
+        DeleteDoctorSearchPanel d1 = new DeleteDoctorSearchPanel(j1);
         j1.removeAll();
         j1.add(d1);
         j1.revalidate();

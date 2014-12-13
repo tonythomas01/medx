@@ -17,20 +17,27 @@
 package medx;
 
 import java.sql.ResultSet;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
  * @author router
  */
-public class DeleteDoctorPanel extends stdpanel {
+public class DeleteDoctorSearchPanel extends stdpanel {
 
     /**
      * Creates new form DeleteDoctorPanel
      */
-    public DeleteDoctorPanel( JPanel j ) {
+    public DeleteDoctorSearchPanel( JPanel j ) {
         super( j );
         initComponents();
+         JDBCConnections j1 = new JDBCConnections();
+        String[] DoctorNames = j1.getDoctorNames();
+        DocNameComboBox.removeAllItems();
+        DefaultComboBoxModel DocModel = new DefaultComboBoxModel( DoctorNames );
+        DocNameComboBox.setModel(DocModel );
     }
 
     /**
@@ -43,8 +50,9 @@ public class DeleteDoctorPanel extends stdpanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        JDocNameField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        DocNameComboBox = new javax.swing.JComboBox();
+        jButton2 = new javax.swing.JButton();
 
         jLabel1.setText("Doctor Name");
 
@@ -55,36 +63,49 @@ public class DeleteDoctorPanel extends stdpanel {
             }
         });
 
+        jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1)
-                .addGap(42, 42, 42)
+                .addContainerGap(177, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(JDocNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(70, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(29, 29, 29)
+                        .addComponent(DocNameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addGap(140, 140, 140))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addGap(279, 279, 279))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(87, 87, 87)
+                .addGap(91, 91, 91)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(JDocNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(jButton1)
-                .addContainerGap(126, Short.MAX_VALUE))
+                    .addComponent(jButton1)
+                    .addComponent(DocNameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(86, 86, 86))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
+       try {
             JDBCConnections jdbcConn = new JDBCConnections();
-            ResultSet rs = jdbcConn.selectParticularDoctor( JDocNameField.getText() );
+            ResultSet rs = jdbcConn.selectParticularDoctor( DocNameComboBox.getSelectedItem().toString() );
             ViewDoctorDetailsPanel v1 = new ViewDoctorDetailsPanel(j1,rs);
             j1.removeAll();
             j1.add(v1);
@@ -95,10 +116,19 @@ public class DeleteDoctorPanel extends stdpanel {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        WelcomePanel w1 = new WelcomePanel(j1);
+        j1.removeAll();
+        j1.add(w1);
+        j1.revalidate();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField JDocNameField;
+    private javax.swing.JComboBox DocNameComboBox;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
