@@ -169,6 +169,43 @@ public class JDBCConnections {
       return null;
     }
     
+    public static String[] getPatientNames( Integer doctorId ) {
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs;
+            Integer totalSize = getTotalNumberOfPatientsForADoctor( doctorId );
+            String sql = "SELECT P_NAME FROM PATIENT WHERE P_ID IN "
+                    + "( SELECT P_ID FROM APPOINMENT WHERE D_ID = "+doctorId+");";
+            rs = stmt.executeQuery( sql );
+            String[] allPatients = new String[ totalSize ];
+            int i = 0;
+            while ( rs.next() ) {
+                allPatients[i] = rs.getString( "p_name" );
+                i++;
+            }
+            return allPatients;     
+        }catch ( Exception e ) {
+            e.printStackTrace();
+        }
+      return null;
+    }
+    
+    public static Integer getTotalNumberOfPatientsForADoctor( Integer doctorId ) {
+         try {
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT COUNT(*) AS numberofPatients FROM PATIENT WHERE P_ID IN "
+                    + "( SELECT P_ID FROM APPOINMENT WHERE D_ID = "+doctorId+");";
+            ResultSet rs;
+            rs = stmt.executeQuery(sql);
+            while( rs.next() ) {
+                return rs.getInt( "numberofPatients" );
+            }
+        }catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
     public static Integer getNextPatientId() {
         try {
             Statement stmt = conn.createStatement();
