@@ -50,16 +50,16 @@ public class JDBCConnections {
             String sqlAppoinmentDetails = "CREATE TABLE IF NOT EXISTS APPOINMENT_DETAILS( APP_ID INTEGER REFERENCES APPOINMENT(APP_ID), "
                     + "APP_DATE DATE, APP_TIME TIME, APP_BOOKINGTIMESTAMP TIMESTAMP DEFAULT CURRENT_TIMESTAMP , "
                     + "APP_DONE BOOLEAN DEFAULT FALSE )";
- 
+            String sqlDateFormat = "SET datestyle = \"ISO, DMY\";";
             stmt.executeUpdate(sqlDoc);
             stmt.executeUpdate(sqlPatient);
             stmt.executeUpdate(sqlAppoinment);
             stmt.executeUpdate(sqlAppoinmentDetails);
+            stmt.executeUpdate( sqlDateFormat );
         } catch ( Exception e ) {
             e.printStackTrace();
         }
     }
-    
     public static void createNewDoctorRecord( String DoctorName,Integer DoctorAge,
         String DoctorGender, String DoctorDepartment,Integer DoctorJoiningYear, String DoctorAddressLine1,
         String DoctorAddressLine2, Integer DoctorPhone) {
