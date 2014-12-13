@@ -47,9 +47,14 @@ public class JDBCConnections {
             String sqlAppoinment = "CREATE TABLE IF NOT EXISTS APPOINMENT( APP_ID SERIAL PRIMARY KEY, "
                     + "D_ID INTEGER  REFERENCES DOCTOR( D_ID ), "
                     + "P_ID INTEGER REFERENCES PATIENT( P_ID ));";
+            String sqlAppoinmentDetails = "CREATE TABLE IF NOT EXISTS APPOINMENT_DETAILS( APP_ID INTEGER REFERENCES APPOINMENT(APP_ID), "
+                    + "APP_DATE DATE, APP_TIME TIME, APP_BOOKINGTIMESTAMP TIMESTAMP DEFAULT CURRENT_TIMESTAMP , "
+                    + "APP_DONE BOOLEAN DEFAULT FALSE )";
+ 
             stmt.executeUpdate(sqlDoc);
             stmt.executeUpdate(sqlPatient);
             stmt.executeUpdate(sqlAppoinment);
+            stmt.executeUpdate(sqlAppoinmentDetails);
         } catch ( Exception e ) {
             e.printStackTrace();
         }
@@ -238,8 +243,30 @@ public class JDBCConnections {
         }
         return 0;
     }
-//    public static void addNewAppoinment( String PatientName, Integer patientId ) {
-//        
-//    }
+    
+     public static Integer getNextAppoinmentId() {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT count(*) AS numberOfAppoinments from APPOINMENT";
+            ResultSet rs;
+            rs = stmt.executeQuery(sql);
+            while( rs.next() ) {
+                return rs.getInt( "numberOfAppoinments" )+1;
+             }
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return -1;       
+    }
+    
+    public void addAppoinmentDetails( Integer appoinmentID, String appoinmentDate, String appoinmentTime ) {
+         try {
+            Statement stmt = conn.createStatement();
+            String sql = "INSERT INTO APPOINMENT_DETAILS VALUES( "+appoinmentID+",'"+appoinmentDate+"','"+appoinmentTime+"');";
+            stmt.executeUpdate(sql);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+    }
 
 }
