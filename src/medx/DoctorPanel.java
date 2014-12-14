@@ -35,6 +35,7 @@ public class DoctorPanel extends stdpanel {
     Integer DoctorJoiningYear;
     String DoctorDepartment;
     Integer DoctorId;
+    Integer CurrentAppoinmentId;
 
     /**
      * Creates new form NewDoctorPanel
@@ -76,21 +77,21 @@ public class DoctorPanel extends stdpanel {
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        drugCombo1 = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
-        jTextField3 = new javax.swing.JTextField();
+        drugCombo2 = new javax.swing.JComboBox();
+        drugQty1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        drugQty2 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox();
+        drugCombo3 = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        drugQty3 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox();
+        drugCombo4 = new javax.swing.JComboBox();
         jLabel12 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        drugQty4 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         treatmentRemarks = new javax.swing.JTextArea();
@@ -151,18 +152,18 @@ public class DoctorPanel extends stdpanel {
 
         jLabel4.setText("Drug 1");
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        drugCombo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                drugCombo1ActionPerformed(evt);
             }
         });
 
         jLabel5.setText("Drug 2");
 
-        jTextField3.setEditable(false);
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        drugQty1.setEditable(false);
+        drugQty1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                drugQty1ActionPerformed(evt);
             }
         });
 
@@ -170,22 +171,22 @@ public class DoctorPanel extends stdpanel {
 
         jLabel7.setText("Qty");
 
-        jTextField4.setEditable(false);
+        drugQty2.setEditable(false);
 
         jLabel8.setText("Drug 3");
 
         jLabel10.setText("Qty");
 
-        jTextField5.setEditable(false);
+        drugQty3.setEditable(false);
 
         jLabel11.setText("Drug 4");
 
         jLabel12.setText("Qty");
 
-        jTextField6.setEditable(false);
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        drugQty4.setEditable(false);
+        drugQty4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                drugQty4ActionPerformed(evt);
             }
         });
 
@@ -215,37 +216,36 @@ public class DoctorPanel extends stdpanel {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(viewQueueButton)
-                                .addGap(28, 28, 28)
-                                .addComponent(patientComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(4, 4, 4)
-                                .addComponent(docName, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(37, 37, 37))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel15))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                                .addComponent(jTextField2)
-                                .addComponent(appoinmentId))
-                            .addGap(89, 89, 89)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel11)
-                                .addComponent(jLabel13)))))
+                            .addComponent(viewQueueButton)
+                            .addGap(28, 28, 28)
+                            .addComponent(patientComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(4, 4, 4)
+                            .addComponent(docName, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(37, 37, 37))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel15))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                            .addComponent(jTextField2)
+                            .addComponent(appoinmentId))
+                        .addGap(89, 89, 89)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel13))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(61, 61, 61)
@@ -271,10 +271,10 @@ public class DoctorPanel extends stdpanel {
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(drugCombo1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(drugCombo2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(drugCombo3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(drugCombo4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,19 +282,19 @@ public class DoctorPanel extends stdpanel {
                                                     .addGroup(layout.createSequentialGroup()
                                                         .addComponent(jLabel6)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(drugQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                     .addGroup(layout.createSequentialGroup()
                                                         .addComponent(jLabel7)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jTextField4)))
+                                                        .addComponent(drugQty2)))
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                     .addComponent(jLabel10)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addComponent(drugQty3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel12)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextField6)))))))
+                                                .addComponent(drugQty4)))))))
                         .addGap(28, 28, 28))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -321,9 +321,9 @@ public class DoctorPanel extends stdpanel {
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(drugCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(drugQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
@@ -338,20 +338,20 @@ public class DoctorPanel extends stdpanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(drugQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(drugCombo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(drugQty3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(drugCombo3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(drugQty4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)
-                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(drugCombo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -381,7 +381,7 @@ public class DoctorPanel extends stdpanel {
             ResultSet rs = j1.selectParticularPatient( patientComboBox.getSelectedItem().toString() );
             jTextField1.setText( rs.getString( "p_id" ) );
             jTextField2.setText( rs.getString( "p_gender" ) );
-            Integer CurrentAppoinmentId = j1.getAppoinmentId( DoctorId, rs.getInt( "p_id" )  );        
+            CurrentAppoinmentId = j1.getAppoinmentId( DoctorId, rs.getInt( "p_id" )  );        
             appoinmentId.setText( CurrentAppoinmentId.toString() );
         }catch ( Exception e ) {
             e.printStackTrace();
@@ -397,17 +397,21 @@ public class DoctorPanel extends stdpanel {
             j1.revalidate();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void drugQty4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drugQty4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_drugQty4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        JDBCConnections j1 = new JDBCConnections();
+        if ( treatmentRemarks.getText() != "" ) {
+            j1.createTreatmentRemarks( this.CurrentAppoinmentId, this.treatmentRemarks.getText() );
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void drugQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drugQty1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_drugQty1ActionPerformed
 
     private void patientComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientComboBoxActionPerformed
         // TODO add your handling code here:
@@ -431,49 +435,53 @@ public class DoctorPanel extends stdpanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        this.jTextField3.setEditable(true);
-        this.jTextField4.setEditable(true);
-        this.jTextField5.setEditable(true);
-        this.jTextField6.setEditable(true);
+        this.drugQty1.setEditable(true);
+        this.drugQty2.setEditable(true);
+        this.drugQty3.setEditable(true);
+        this.drugQty4.setEditable(true);
         this.treatmentRemarks.setEditable(true);
         try {
             JDBCConnections j1 = new JDBCConnections();
             String[] DrugNames = j1.getDrugNames();
-            jComboBox1.removeAllItems();
-            jComboBox2.removeAllItems();
-            jComboBox3.removeAllItems();
-            jComboBox4.removeAllItems();
+            drugCombo1.removeAllItems();
+            drugCombo2.removeAllItems();
+            drugCombo3.removeAllItems();
+            drugCombo4.removeAllItems();
             
             DefaultComboBoxModel DrugListModel1 = new DefaultComboBoxModel(DrugNames);
             DefaultComboBoxModel DrugListModel2 = new DefaultComboBoxModel(DrugNames);
             DefaultComboBoxModel DrugListModel3 = new DefaultComboBoxModel(DrugNames);
             DefaultComboBoxModel DrugListModel4 = new DefaultComboBoxModel(DrugNames);
-            jComboBox1.setModel( DrugListModel1 );
-            jComboBox2.setModel( DrugListModel2 );
-            jComboBox3.setModel( DrugListModel3 );
-            jComboBox4.setModel( DrugListModel4 );
+            drugCombo1.setModel( DrugListModel1 );
+            drugCombo2.setModel( DrugListModel2 );
+            drugCombo3.setModel( DrugListModel3 );
+            drugCombo4.setModel( DrugListModel4 );
         }catch ( Exception e ) {
             e.printStackTrace();
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void drugCombo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drugCombo1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_drugCombo1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField appoinmentId;
     public javax.swing.JTextField docId;
     private javax.swing.JTextField docName;
+    private javax.swing.JComboBox drugCombo1;
+    private javax.swing.JComboBox drugCombo2;
+    private javax.swing.JComboBox drugCombo3;
+    private javax.swing.JComboBox drugCombo4;
+    private javax.swing.JTextField drugQty1;
+    private javax.swing.JTextField drugQty2;
+    private javax.swing.JTextField drugQty3;
+    private javax.swing.JTextField drugQty4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -492,10 +500,6 @@ public class DoctorPanel extends stdpanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JComboBox patientComboBox;
     private javax.swing.JTextArea treatmentRemarks;

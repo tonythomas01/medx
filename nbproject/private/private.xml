@@ -10,12 +10,16 @@
             <file>file:/home/router/NetBeansProjects/Medx/src/medx/ViewDoctorDetailsPanel.java</file>
             <file>file:/home/router/NetBeansProjects/Medx/src/medx/NewPatientPanel.java</file>
             <file>file:/home/router/NetBeansProjects/Medx/src/medx/JDBCConnections.java</file>
+            <file>file:/home/router/NetBeansProjects/Medx/src/medx/DeleteDoctorSearchPanel.java</file>
             <file>file:/home/router/NetBeansProjects/Medx/src/medx/Medx.java</file>
             <file>file:/home/router/NetBeansProjects/Medx/src/medx/MainFrame.java</file>
-            <file>file:/home/router/NetBeansProjects/Medx/src/medx/DeleteDoctorPanel.java</file>
             <file>file:/home/router/NetBeansProjects/Medx/src/medx/WelcomePanel.java</file>
-            <file>file:/home/router/NetBeansProjects/Medx/src/medx/MedxInterface.java</file>
+            <file>file:/home/router/NetBeansProjects/Medx/src/medx/DoctorPanel.java</file>
+            <file>file:/home/router/NetBeansProjects/Medx/src/medx/PharmacistPanel.java</file>
+            <file>file:/home/router/NetBeansProjects/Medx/src/medx/DoctorView.java</file>
             <file>file:/home/router/NetBeansProjects/Medx/src/medx/DeletePatientPanel.java</file>
+            <file>file:/home/router/NetBeansProjects/Medx/src/medx/ReceptionPanel.java</file>
+            <file>file:/home/router/NetBeansProjects/Medx/src/medx/PharmacistNewDrug.java</file>
         </group>
     </open-files>
 </project-private>

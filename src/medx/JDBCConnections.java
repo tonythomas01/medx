@@ -53,7 +53,10 @@ public class JDBCConnections {
             String sqlDrugTable = "CREATE TABLE IF NOT EXISTS DRUG( DG_ID SERIAL PRIMARY KEY, "
                     + "DG_NAME VARCHAR(30), DG_MANUFACTURER VARCHAR(30), DG_RATE INTEGER, DG_MANUFACTURE_DATE DATE,"
                     + " DG_EXPIRY DATE, DG_INITAL_AVAIL INTEGER, DG_VENDRO VARCHAR(30) );";
-            
+            String sqlTreatmentDrugTable = "CREATE TABLE IF NOT EXISTS REATMENT_DRUG_DETAILS( APP_ID INTEGER REFERENCES APPOINMENT(APP_ID), "
+                    + "DRUG_ID INTEGER REFERENCES DRUG(DG_ID), DRUG_QUANTIY INTEGER );";
+            String sqlTreatementRemarksTable = "CREATE TABLE IF NOT EXISTS TREATMENT_REMARKS_DETAILS( APP_ID INTEGER REFERENCES APPOINMENT(APP_ID), "
+                    + "REMARKS VARCHAR(300) )";
             String sqlDateFormat = "SET datestyle = \"ISO, DMY\";";
             stmt.executeUpdate(sqlDoc);
             stmt.executeUpdate(sqlPatient);
@@ -61,6 +64,8 @@ public class JDBCConnections {
             stmt.executeUpdate(sqlAppoinmentDetails);
             stmt.executeUpdate(sqlDrugTable);
             stmt.executeUpdate( sqlDateFormat );
+            stmt.executeUpdate(sqlTreatmentDrugTable);
+            stmt.executeUpdate(sqlTreatementRemarksTable);
         } catch ( Exception e ) {
             e.printStackTrace();
         }
@@ -386,6 +391,17 @@ public class JDBCConnections {
             e.printStackTrace();
         }
         return -1;
+    }
+    
+    //Treatment Stuff
+    public static void createTreatmentRemarks( Integer appoinmentId, String remarks ) {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "INSERT INTO TREATMENT_REMARKS_DETAILS VALUES( "+appoinmentId+",'"+remarks+"');";
+            stmt.executeUpdate(sql);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
     }
 
 }
