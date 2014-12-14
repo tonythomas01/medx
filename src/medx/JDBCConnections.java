@@ -81,6 +81,7 @@ public class JDBCConnections {
             stmt.executeUpdate( sql );
             
         } catch( Exception e ) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Create Doctor Record",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -89,6 +90,20 @@ public class JDBCConnections {
         try {
            Statement stmt = conn.createStatement();
            String sql = "SELECT * FROM DOCTOR WHERE d_name='"+DoctorName+"';";
+           ResultSet rs = stmt.executeQuery(sql);
+           while( rs.next() ) {
+               return rs;
+           }
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public static ResultSet selectParticularDrug( String DrugName ) {
+        try {
+           Statement stmt = conn.createStatement();
+           String sql = "SELECT * FROM DRUG WHERE dg_name='"+DrugName+"';";
            ResultSet rs = stmt.executeQuery(sql);
            while( rs.next() ) {
                return rs;
@@ -121,6 +136,7 @@ public class JDBCConnections {
             Statement stmt = conn.createStatement();
             stmt.executeQuery( sql );
         } catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Create Patient Record",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }  
     }
@@ -132,6 +148,7 @@ public class JDBCConnections {
             String sql = "INSERT INTO APPOINMENT VALUES( DEFAULT,"+DocId+","+patientId+");";
             stmt.executeUpdate( sql );
         }catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Create Appoinmnet",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }
         
@@ -146,6 +163,7 @@ public class JDBCConnections {
                     + "'"+Vendor+"');";
             stmt.executeUpdate( sql );
         }catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Create Drug",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -172,6 +190,18 @@ public class JDBCConnections {
             JOptionPane.showMessageDialog(null,"Successfully Deleted","Delete a Patient",JOptionPane.WARNING_MESSAGE);
         } catch ( Exception e ) {
             JOptionPane.showMessageDialog(null,"Cannot Delete","Delete a Patient",JOptionPane.WARNING_MESSAGE);
+            e.printStackTrace();
+        }   
+    }
+    
+     public static void DeleteDrugRecord( Integer DrugId ) {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "DELETE FROM DRUG WHERE dg_id="+DrugId+";";
+            stmt.executeQuery(sql);
+            JOptionPane.showMessageDialog(null,"Successfully Deleted","Delete a Drug",JOptionPane.WARNING_MESSAGE);
+        } catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Delete a Drug",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }   
     }
@@ -270,6 +300,7 @@ public class JDBCConnections {
                 return rs.getInt( "numberofPatients" );
             }
         }catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Selecting Patients",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }
         return 0;
@@ -285,6 +316,7 @@ public class JDBCConnections {
                 return rs.getInt( "numberofDrugs" );
             }
         }catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Get Total number of Drugs",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }
         return 0;
@@ -300,6 +332,7 @@ public class JDBCConnections {
                 return rs.getInt( "numberOfPatients" )+1;
              }
         } catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Get Next Patient Id",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }
         return 0;       
@@ -315,6 +348,7 @@ public class JDBCConnections {
                 return rs.getInt( "numberOfDrugs" )+1;
              }
         } catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Get Next Drug Id",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }
         return 0;       
@@ -330,6 +364,7 @@ public class JDBCConnections {
                 return rs.getInt( "numberOfDoctor" )+1;
              }
         } catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Get Next Doctor Id",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }
         return -1;       
@@ -375,6 +410,7 @@ public class JDBCConnections {
                 return rs.getInt("NUMBEROFAPPOINMENTS");
              }
         } catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Get Total Appoinment",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }
         return 0;
@@ -401,6 +437,7 @@ public class JDBCConnections {
             String sql = "INSERT INTO APPOINMENT_DETAILS VALUES( "+appoinmentID+",'"+appoinmentDate+"','"+appoinmentTime+"');";
             stmt.executeUpdate(sql);
         } catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Add an appoinment",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -414,6 +451,7 @@ public class JDBCConnections {
                 return rs.getInt( "APP_ID" );
             }
         } catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Get appoinmnet Id",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }
         return -1;
@@ -426,6 +464,7 @@ public class JDBCConnections {
             String sql = "INSERT INTO TREATMENT_REMARKS_DETAILS VALUES( "+appoinmentId+",'"+remarks+"');";
             stmt.executeUpdate(sql);
         } catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Create Treatment Remarks",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -450,6 +489,7 @@ public class JDBCConnections {
             String sql = "INSERT INTO TREATMENT_DRUG_DETAILS VALUES( "+appoinmentId+","+drugId+", "+drugQuantity+");";
             stmt.executeUpdate(sql);
         } catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Create Treatment Drug Detals",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -460,6 +500,7 @@ public class JDBCConnections {
             String sql = "UPDATE APPOINMENT_DETAILS SET APP_DONE = TRUE WHERE APP_ID="+appoinmentId+";";
             stmt.executeUpdate(sql);
         } catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Treatment Done",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }
     }

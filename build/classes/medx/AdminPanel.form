@@ -17,23 +17,25 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="141" max="32767" attributes="0"/>
+              <EmptySpace pref="186" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButton1" min="-2" pref="162" max="-2" attributes="0"/>
-                          <Component id="delDocButton" min="-2" pref="162" max="-2" attributes="0"/>
+                          <Component id="addNewDrugButton" min="-2" pref="162" max="-2" attributes="0"/>
+                          <Component id="AddPatientbutton" min="-2" pref="162" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="AddPatientbutton" alignment="1" min="-2" pref="162" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jButton5" alignment="1" min="-2" pref="162" max="-2" attributes="0"/>
+                          <Component id="delDrugButton" alignment="1" min="-2" pref="162" max="-2" attributes="0"/>
+                          <Component id="delDocButton" min="-2" pref="162" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="97" pref="97" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="287" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="282" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -44,17 +46,22 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="AddPatientbutton" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
                   <Component id="jButton1" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
+                  <Component id="delDocButton" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="delDocButton" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
                   <Component id="jButton5" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
+                  <Component id="AddPatientbutton" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="delDrugButton" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
+                  <Component id="addNewDrugButton" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="114" max="32767" attributes="0"/>
               <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="111" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -98,6 +105,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="addNewDrugButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Add a Drug"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addNewDrugButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="delDrugButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Delete a Drug"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="delDrugButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

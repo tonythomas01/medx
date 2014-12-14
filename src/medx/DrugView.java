@@ -25,19 +25,19 @@ import javax.swing.JPanel;
  *
  * @author router
  */
-public class PatientView extends stdpanel {
+public class DrugView extends stdpanel {
 
     /**
      * Creates new form DeleteDoctorPanel
      */
-    public PatientView( JPanel j ) {
+    public DrugView( JPanel j ) {
         super( j );
         initComponents();
          JDBCConnections j1 = new JDBCConnections();
-        String[] PatientNames = j1.getAllPatientNames();
-        patComboBox.removeAllItems();
-        DefaultComboBoxModel DocModel = new DefaultComboBoxModel( PatientNames );
-        patComboBox.setModel(DocModel );
+        String[] DrugNames = j1.getDrugNames();
+        DrugNameComboBox.removeAllItems();
+        DefaultComboBoxModel DocModel = new DefaultComboBoxModel( DrugNames );
+        DrugNameComboBox.setModel(DocModel );
     }
 
     /**
@@ -51,21 +51,15 @@ public class PatientView extends stdpanel {
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        patComboBox = new javax.swing.JComboBox();
+        DrugNameComboBox = new javax.swing.JComboBox();
         jButton2 = new javax.swing.JButton();
 
-        jLabel1.setText("Patient Name");
+        jLabel1.setText("Drug Name");
 
         jButton1.setText("Go");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        patComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patComboBoxActionPerformed(evt);
             }
         });
 
@@ -81,12 +75,12 @@ public class PatientView extends stdpanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(172, Short.MAX_VALUE)
+                .addContainerGap(190, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(29, 29, 29)
-                        .addComponent(patComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DrugNameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
                         .addGap(140, 140, 140))
@@ -101,7 +95,7 @@ public class PatientView extends stdpanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jButton1)
-                    .addComponent(patComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DrugNameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(86, 86, 86))
@@ -109,17 +103,16 @@ public class PatientView extends stdpanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     try {
+        try {
             JDBCConnections jdbcConn = new JDBCConnections();
-            ResultSet rs = jdbcConn.selectParticularPatient( patComboBox.getSelectedItem().toString() );
-            ViewPatientDetailsPanel v1 = new ViewPatientDetailsPanel(j1,rs);
+            ResultSet rs = jdbcConn.selectParticularDrug( DrugNameComboBox.getSelectedItem().toString() );
+            PharmacistViewDrugDetails d1 = new PharmacistViewDrugDetails(j1,rs);
             j1.removeAll();
-            j1.add(v1);
+            j1.add(d1);
             j1.revalidate();
         } catch ( Exception e ) {
             e.printStackTrace();
         }
-        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -131,15 +124,11 @@ public class PatientView extends stdpanel {
         j1.revalidate();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void patComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_patComboBoxActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox DrugNameComboBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JComboBox patComboBox;
     // End of variables declaration//GEN-END:variables
 }
