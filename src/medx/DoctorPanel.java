@@ -99,6 +99,7 @@ public class DoctorPanel extends stdpanel {
         jButton3 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         appoinmentId = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -208,6 +209,13 @@ public class DoctorPanel extends stdpanel {
 
         appoinmentId.setEditable(false);
 
+        jButton4.setText("Next");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -262,10 +270,6 @@ public class DoctorPanel extends stdpanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3)
-                                .addGap(74, 74, 74))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -294,7 +298,12 @@ public class DoctorPanel extends stdpanel {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel12)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(drugQty4)))))))
+                                                .addComponent(drugQty4))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton4)))
                         .addGap(28, 28, 28))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -363,7 +372,9 @@ public class DoctorPanel extends stdpanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14)
-                    .addComponent(jButton3))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton3)
+                        .addComponent(jButton4)))
                 .addGap(28, 28, 28)
                 .addComponent(jButton1)
                 .addGap(40, 40, 40))
@@ -407,6 +418,24 @@ public class DoctorPanel extends stdpanel {
         if ( treatmentRemarks.getText() != "" ) {
             j1.createTreatmentRemarks( this.CurrentAppoinmentId, this.treatmentRemarks.getText() );
         }
+        if( drugCombo1.getSelectedIndex() == -1  ) {
+            Integer selectedDrugId = j1.getDrugId( this.drugCombo1.getSelectedItem().toString() );
+            j1.createTreatmentDrugDetails( this.CurrentAppoinmentId, selectedDrugId, Integer.parseInt( this.drugQty1.getText() ) );
+        }
+        if( drugCombo2.getSelectedIndex() == -1 ) {
+            Integer selectedDrugId = j1.getDrugId( this.drugCombo2.getSelectedItem().toString() );
+            j1.createTreatmentDrugDetails( this.CurrentAppoinmentId, selectedDrugId, Integer.parseInt( this.drugQty2.getText() ) );
+        } 
+        if( drugCombo3.getSelectedIndex() == -1 ) {
+            Integer selectedDrugId = j1.getDrugId( this.drugCombo3.getSelectedItem().toString() );
+            j1.createTreatmentDrugDetails( this.CurrentAppoinmentId, selectedDrugId, Integer.parseInt( this.drugQty3.getText() ) );
+        } 
+        if( drugCombo4.getSelectedIndex() == -1 ) {
+            Integer selectedDrugId = j1.getDrugId( this.drugCombo4.getSelectedItem().toString() );
+            j1.createTreatmentDrugDetails( this.CurrentAppoinmentId, selectedDrugId, Integer.parseInt( this.drugQty4.getText() ) );
+        }
+        j1.treatmentDone( this.CurrentAppoinmentId );
+        JOptionPane.showMessageDialog(null,"Successfully Added","Treatment Details Updated",JOptionPane.WARNING_MESSAGE);  
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void drugQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drugQty1ActionPerformed
@@ -456,6 +485,14 @@ public class DoctorPanel extends stdpanel {
             drugCombo2.setModel( DrugListModel2 );
             drugCombo3.setModel( DrugListModel3 );
             drugCombo4.setModel( DrugListModel4 );
+            drugCombo1.insertItemAt("", 0);
+            drugCombo2.insertItemAt("", 0);
+            drugCombo3.insertItemAt("", 0);
+            drugCombo4.insertItemAt("", 0);
+            drugCombo1.setSelectedIndex(0);
+            drugCombo2.setSelectedIndex(0);
+            drugCombo3.setSelectedIndex(0);
+            drugCombo4.setSelectedIndex(0);
         }catch ( Exception e ) {
             e.printStackTrace();
         }
@@ -465,6 +502,11 @@ public class DoctorPanel extends stdpanel {
     private void drugCombo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drugCombo1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_drugCombo1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.patientComboBox.setSelectedIndex( this.patientComboBox.getSelectedIndex()+ 1 );
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -482,6 +524,7 @@ public class DoctorPanel extends stdpanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

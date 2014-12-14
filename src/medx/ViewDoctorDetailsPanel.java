@@ -30,7 +30,7 @@ public class ViewDoctorDetailsPanel extends stdpanel {
     String DoctorGender;
     String DoctorAddressLine1;
     String DoctorAddressLine2;
-    Integer DoctorPhone;
+    String DoctorPhone;
     Integer DoctorJoiningYear;
     String DoctorDepartment;
     Integer DoctorId;
@@ -47,6 +47,7 @@ public class ViewDoctorDetailsPanel extends stdpanel {
             docId.setText( rs.getString("d_id") );
             docName.setText( rs.getString("d_name") );
             docAge.setText( rs.getString("d_age") );
+            docGender.setSelectedItem( rs.getString("d_gender"));
             docDepartment.setText( rs.getString( "d_department"));
             docJoiningYear.setText( rs.getString("d_joiningyear"));
             docAddress1.setText( rs.getString("d_addressline1"));
@@ -255,10 +256,9 @@ public class ViewDoctorDetailsPanel extends stdpanel {
         DoctorAddressLine1 = docAddress1.getText();
         DoctorAddressLine2 = docAddress2.getText();
         DoctorJoiningYear = Integer.parseInt( docJoiningYear.getText() );
-        DoctorPhone = Integer.parseInt( docPhone.getText() );
+        DoctorPhone =  docPhone.getText();
         JDBCConnections jdbcConn = new JDBCConnections();
         jdbcConn.DeleteDoctorRecord( DoctorId );
-        JOptionPane.showMessageDialog(null,"Successfully Deleted","Delete a Doctor",JOptionPane.WARNING_MESSAGE);
         AdminPanel a1 = new AdminPanel(j1);
         j1.removeAll();
         j1.add(a1);

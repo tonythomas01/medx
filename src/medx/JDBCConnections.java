@@ -40,7 +40,7 @@ public class JDBCConnections {
             Statement stmt = conn.createStatement();
             String sqlDoc = "CREATE TABLE IF NOT EXISTS DOCTOR( D_ID SERIAL PRIMARY KEY, D_NAME VARCHAR(30),"
                     + " D_AGE INTEGER, D_GENDER VARCHAR(10), D_DEPARTMENT VARCHAR(30), D_JOININGYEAR INTEGER, D_ADDRESSLINE1 VARCHAR(60), "
-                    + "D_ADDRESSLINE2 VARCHAR(60), D_PHONE INTEGER );";
+                    + "D_ADDRESSLINE2 VARCHAR(60), D_PHONE NUMERIC(15,0) );";
             String sqlPatient = "CREATE TABLE IF NOT EXISTS PATIENT( P_ID SERIAL PRIMARY KEY, P_NAME VARCHAR(30),"
                     + "P_AGE INTEGER, P_GENDER VARCHAR(10), P_ADDRESSLINE1 VARCHAR(60), "
                     + "P_ADDRESSLINE2 VARCHAR(60), P_PHONE INTEGER );";
@@ -53,7 +53,7 @@ public class JDBCConnections {
             String sqlDrugTable = "CREATE TABLE IF NOT EXISTS DRUG( DG_ID SERIAL PRIMARY KEY, "
                     + "DG_NAME VARCHAR(30), DG_MANUFACTURER VARCHAR(30), DG_RATE INTEGER, DG_MANUFACTURE_DATE DATE,"
                     + " DG_EXPIRY DATE, DG_INITAL_AVAIL INTEGER, DG_VENDRO VARCHAR(30) );";
-            String sqlTreatmentDrugTable = "CREATE TABLE IF NOT EXISTS REATMENT_DRUG_DETAILS( APP_ID INTEGER REFERENCES APPOINMENT(APP_ID), "
+            String sqlTreatmentDrugTable = "CREATE TABLE IF NOT EXISTS TREATMENT_DRUG_DETAILS( APP_ID INTEGER REFERENCES APPOINMENT(APP_ID), "
                     + "DRUG_ID INTEGER REFERENCES DRUG(DG_ID), DRUG_QUANTIY INTEGER );";
             String sqlTreatementRemarksTable = "CREATE TABLE IF NOT EXISTS TREATMENT_REMARKS_DETAILS( APP_ID INTEGER REFERENCES APPOINMENT(APP_ID), "
                     + "REMARKS VARCHAR(300) )";
@@ -72,7 +72,7 @@ public class JDBCConnections {
     }
     public static void createNewDoctorRecord( String DoctorName,Integer DoctorAge,
         String DoctorGender, String DoctorDepartment,Integer DoctorJoiningYear, String DoctorAddressLine1,
-        String DoctorAddressLine2, Integer DoctorPhone) {
+        String DoctorAddressLine2, String DoctorPhone) {
         try {
             Statement stmt = conn.createStatement();
             String sql = "INSERT INTO DOCTOR VALUES( DEFAULT,'"+DoctorName+"',"+DoctorAge+",'"+DoctorGender+"',"
@@ -104,7 +104,9 @@ public class JDBCConnections {
             Statement stmt = conn.createStatement();
             String sql = "DELETE FROM DOCTOR WHERE d_id="+DocId+";";
             stmt.executeQuery(sql);
+            JOptionPane.showMessageDialog( null,"Successfully Deleted","Delete Doctor",JOptionPane.WARNING_MESSAGE);
         } catch ( Exception e ) {
+            JOptionPane.showMessageDialog( null,"Cannot Delete","Delete Doctor",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }
         
@@ -167,7 +169,9 @@ public class JDBCConnections {
             Statement stmt = conn.createStatement();
             String sql = "DELETE FROM PATIENT WHERE p_id="+PatientId+";";
             stmt.executeQuery(sql);
+            JOptionPane.showMessageDialog(null,"Successfully Deleted","Delete a Patient",JOptionPane.WARNING_MESSAGE);
         } catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null,"Cannot Delete","Delete a Patient",JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }   
     }
@@ -213,6 +217,28 @@ public class JDBCConnections {
       return null;
     }
     
+    
+    public static String[] getAllPatientNames() {
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs;
+            Integer totalSize = getNextPatientId()-1;
+            String sql = "SELECT P_NAME FROM PATIENT ";
+            rs = stmt.executeQuery( sql );
+            String[] allPatients = new String[ totalSize ];
+            int i = 0;
+            while ( rs.next() ) {
+                allPatients[i] = rs.getString( "p_name" );
+                i++;
+            }
+            return allPatients;     
+        }catch ( Exception e ) {
+            e.printStackTrace();
+        }
+      return null;
+    }
+    
+    
     public static String[] getDrugNames( ) {
         try {
             Statement stmt = conn.createStatement();
@@ -220,7 +246,7 @@ public class JDBCConnections {
             Integer totalSize = getTotalNumberOfDrugs();
             String sql = "SELECT DG_NAME FROM DRUG";
             rs = stmt.executeQuery( sql );
-            String[] allDrugs = new String[ totalSize + 1];
+            String[] allDrugs = new String[ totalSize];
             int i = 0;
             while ( rs.next() ) {
                 allDrugs[i] = rs.getString( "dg_name" );
@@ -398,6 +424,40 @@ public class JDBCConnections {
         try {
             Statement stmt = conn.createStatement();
             String sql = "INSERT INTO TREATMENT_REMARKS_DETAILS VALUES( "+appoinmentId+",'"+remarks+"');";
+            stmt.executeUpdate(sql);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+    }
+    
+    public Integer getDrugId( String DrugName ) {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT DG_ID FROM DRUG WHERE DG_NAME = '"+DrugName+"';";
+            ResultSet rs = stmt.executeQuery(sql);
+            while( rs.next() ) {
+                return rs.getInt( "DG_ID" );
+            }
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+    
+    public void createTreatmentDrugDetails( Integer appoinmentId, Integer drugId, Integer drugQuantity ) {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "INSERT INTO TREATMENT_DRUG_DETAILS VALUES( "+appoinmentId+","+drugId+", "+drugQuantity+");";
+            stmt.executeUpdate(sql);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void treatmentDone( Integer appoinmentId ) {
+        try {
+            Statement stmt = conn.createStatement();
+            String sql = "UPDATE APPOINMENT_DETAILS SET APP_DONE = TRUE WHERE APP_ID="+appoinmentId+";";
             stmt.executeUpdate(sql);
         } catch ( Exception e ) {
             e.printStackTrace();

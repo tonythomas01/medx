@@ -115,7 +115,7 @@ public class ReceptionPanel extends stdpanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        DeletePatientPanel d1 = new DeletePatientPanel(j1);
+        PatientView d1 = new PatientView(j1);
         j1.removeAll();
         j1.add(d1);
         j1.revalidate();

@@ -47,7 +47,8 @@ public class ViewPatientDetailsPanel extends stdpanel {
             patAge.setText( rs.getString("p_age") );
             patAddress1.setText( rs.getString("p_addressline1"));
             patAddress2.setText( rs.getString( "p_addressline2") );
-            patPhone.setText(  rs.getString( "p_phone"));                  
+            patPhone.setText(  rs.getString( "p_phone"));  
+            patGender.setSelectedItem( rs.getString( "p_gender"));
         } catch ( Exception e ) {
             e.printStackTrace();
         }
@@ -218,8 +219,7 @@ public class ViewPatientDetailsPanel extends stdpanel {
         PatientPhone = Integer.parseInt( patPhone.getText() );
         JDBCConnections jdbcConn = new JDBCConnections();
         jdbcConn.DeletePatientRecord( PatientId );
-        JOptionPane.showMessageDialog(null,"Successfully Deleted","Delete a Patient",JOptionPane.WARNING_MESSAGE);
-        AdminPanel a1 = new AdminPanel(j1);
+        WelcomePanel a1 = new WelcomePanel(j1);
         j1.removeAll();
         j1.add(a1);
         j1.repaint();
@@ -228,7 +228,7 @@ public class ViewPatientDetailsPanel extends stdpanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-            AdminPanel a1 = new AdminPanel(j1);
+            WelcomePanel a1 = new WelcomePanel(j1);
             j1.removeAll();
             j1.add(a1);
             j1.repaint();

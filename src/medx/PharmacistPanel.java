@@ -42,14 +42,14 @@ public class PharmacistPanel extends stdpanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        AddPatientbutton = new javax.swing.JButton();
+        AddDrugButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        DeleteDrugButton = new javax.swing.JButton();
 
-        AddPatientbutton.setText("Add a Drug");
-        AddPatientbutton.addActionListener(new java.awt.event.ActionListener() {
+        AddDrugButton.setText("Add a Drug");
+        AddDrugButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddPatientbuttonActionPerformed(evt);
+                AddDrugButtonActionPerformed(evt);
             }
         });
 
@@ -60,10 +60,10 @@ public class PharmacistPanel extends stdpanel {
             }
         });
 
-        jButton5.setText("Delete a Drug");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        DeleteDrugButton.setText("Delete a Drug");
+        DeleteDrugButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                DeleteDrugButtonActionPerformed(evt);
             }
         });
 
@@ -73,9 +73,9 @@ public class PharmacistPanel extends stdpanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(101, 101, 101)
-                .addComponent(AddPatientbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(AddDrugButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(DeleteDrugButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -87,8 +87,8 @@ public class PharmacistPanel extends stdpanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddPatientbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(AddDrugButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeleteDrugButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(75, 75, 75)
                 .addComponent(jButton2)
                 .addContainerGap(208, Short.MAX_VALUE))
@@ -104,27 +104,23 @@ public class PharmacistPanel extends stdpanel {
             j1.revalidate();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void AddPatientbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPatientbuttonActionPerformed
+    private void AddDrugButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddDrugButtonActionPerformed
         // TODO add your handling code here:
         PharmacistNewDrug d1 = new PharmacistNewDrug(j1);
         j1.removeAll();
         j1.add(d1);
         j1.revalidate();
         JDBCConnections j1;
-    }//GEN-LAST:event_AddPatientbuttonActionPerformed
+    }//GEN-LAST:event_AddDrugButtonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void DeleteDrugButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteDrugButtonActionPerformed
         // TODO add your handling code here:
-        DeletePatientPanel d1 = new DeletePatientPanel(j1);
-        j1.removeAll();
-        j1.add(d1);
-        j1.revalidate();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_DeleteDrugButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddPatientbutton;
+    private javax.swing.JButton AddDrugButton;
+    private javax.swing.JButton DeleteDrugButton;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
     // End of variables declaration//GEN-END:variables
 }
