@@ -17,4 +17,4 @@ Authors
 * Sharan S
 * Anirudh Anand
 
-Please drop in any issues/Complaints/Drugs.
+Please drop in any issues/Complaints/Bugs
