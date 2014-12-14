@@ -32,8 +32,8 @@ public class JDBCConnections {
     private String DatabasePassword;
     private static Connection conn;
     public JDBCConnections() {
-        this.DatabaseUserName = "mypguser";
-        this.DatabasePassword = "toor";
+        this.DatabaseUserName = "<yourpostgresqlusername>";
+        this.DatabasePassword = "<yourpostgresqlpassword>";
         try { 
             Class.forName( "org.postgresql.Driver");
             conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/medx", DatabaseUserName, DatabasePassword );
